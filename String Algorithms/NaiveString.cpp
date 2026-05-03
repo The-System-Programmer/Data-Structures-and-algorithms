@@ -1,18 +1,17 @@
 #include <iostream>
 #include <string>
 using namespace std;
-int main()
+
+void naive(const string & text , const string & pattern)
 {
-    string text = "ABABDABACDABABCABAB";
-    string pattern = "ABABC";
     int n = text.length();
     int m = pattern.length();
-    for (int i = 0; i <= n - m; i++)
+    for (int i = 0 ; i <= n-m;i++)
     {
         int j;
-        for (j = 0; j < m; j++)
+        for (int j = 0 ; j < m ; j++)
         {
-            if (text[i + j] != pattern[j])
+            if (text[i+j] != pattern[j])
             {
                 break;
             }
