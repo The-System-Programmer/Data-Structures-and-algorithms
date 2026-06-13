@@ -1,60 +1,44 @@
 #include <iostream>
 #include <vector>
+
 using namespace std;
 
-void merge(vector <int> & a,int left,int mid,int right)
+void merge(vector<int> &arr,int left,int mid,int right)
 {
-	vector <int> temp ;
-	int i = left;
-	int j = mid+1;
+	int n1 = mid - left + 1;
+	int n2 = right - mid;
 
-	while(i<=mid && j <= right)
+	vector<int> L(n1),R(n2);
+	for (int i = 0 ; i < n1 ; i++)
+		L[i] = arr[left+i];
+	for (int j = 0 ; j < n2 ; j++)
+		R[j] = arr[mid+1+j];
+	
+	int i = 0 , j = 0;
+	int k = left;
+	while(i<n1&&j<n2)
 	{
-		if(a[i] <= a[j])
+		if (L[i] <= R[j])
 		{
-			temp.push_back(a[i]);
+			arr[k] == L[i];
 			i++;
 		}
-		else
-		{
-			temp.push_back(a[j]);
-			j++;
-		}
-	}
-	while (i<=mid)
-	{
-		temp.push_back(a[i]);
-		i++;
-	}
-	while (j<= right)
-	{
-		temp.push_back(a[j]);
-		j++;
-	}
-
-	for (int k=0;k<temp.size();k++)
-	{
-		a[left+k] = temp[k];
 	}
 }
-void mergeSort(vector <int> & a,int left,int right)
+
+void split(vector<int> &arr,int left , int right)
 {
-	if(left>=right)
-		return;
-	int mid = left+(right-left)/2;
-	mergeSort(a,left,mid);
-	mergeSort(a,mid+1,right);
-	merge(a,left,mid,right);
+	if (left < right)
+	{
+		int mid = left+(right-left)/2;
+		split(arr,left,mid);
+		split(arr,mid+1,right);
+		merge(arr,left,mid,right);
+	}
 }
 int main()
 {
-    vector <int> a = {4 , 2 , 5 , 1 , 3};
-    mergeSort(a,0,a.size()-1);
-    cout << "Sorted arra : ";
-    for (int num : a)
-    {
-    	cout << num << " ";
-    }
-    cout << endl;
-    return 0;
+	vector<int> arr = {2,1,5,4,6,3,9};
+	split(arr,0,arr.size()-1);
+	return 0;
 }

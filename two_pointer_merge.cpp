@@ -1,22 +1,21 @@
-#include <vector>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
-vector<int> merge(vector<int>& a ,vector<int>& b)
+vector<int> merge(vector<int> &a , vector<int> &b)
 {
+	int i = 0 , j = 0;
 	vector<int> result;
-	int i = 0 , j = 0 ;
-
 	while(i<a.size() && j<b.size())
 	{
-		if (a[i]<= b[j])
+		if(a[i]>=b[j])
 		{
-			result.push_back(a[i++]);
+			result.push_back(b[j++]);
 		}
 		else
 		{
-			result.push_back(b[j++]);
+			result.push_back(a[i++]);
 		}
 	}
 	while (i<a.size())
@@ -31,11 +30,10 @@ vector<int> merge(vector<int>& a ,vector<int>& b)
 }
 int main()
 {
-	vector<int> a = {1,2,3,4};
-	vector<int> b = {5,6,7,8};
-
-	vector<int> merged = merge(a,b);
-	for (int x : merged)
+	vector<int> a = {1,2,3,4,5};
+	vector<int> b = {6,7,8,9,10};
+	vector<int> result = merge(a,b);
+	for (int x : result)
 	{
 		cout << x << " ";
 	}

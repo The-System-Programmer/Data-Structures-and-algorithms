@@ -1,11 +1,20 @@
 #include <iostream>
 #include <unordered_set>
-#include <vector>
+
 using namespace std;
+
 int main()
 {
-	vector <int> a =  {10,20,30,40};
-	unordered_set <int> b = {10,20,30,40};
-	cout << b << " ";
+	unordered_set <int> a = { 1,1,1,2,3,4,5};
+	a.insert(6);
+	for (auto it : a)
+	{
+		cout << it << " ";
+	}
+	cout << endl;
+	if (a.count(5))
+	{
+		cout << "5 exists" << endl;
+	}
 	return 0;
 }

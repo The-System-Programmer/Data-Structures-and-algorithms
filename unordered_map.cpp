@@ -1,16 +1,16 @@
 #include <iostream>
 #include <unordered_map>
-
+#include <string>
 using namespace std;
 
 int main()
 {
-	unordered_map<string,int> ageMap = {{"Rohit",19},{"Rahul",24}};
-	for (auto it : ageMap)
+	unordered_map <string,int> map ;
+	map["One"] = 1;
+	for (auto it : map)
 	{
-		cout << it.first << " "<<it.second<<endl;
+		cout << it.first << " "<<it.second;
 	}
-
-	cout << ageMap["Rohit"]<<endl;
+	cout << endl;
 	return 0;
 }
